@@ -1,6 +1,6 @@
 #coding=utf-8
 
-from ucode_basic import UCODERegBank
+from ucode_basic import UCODERegBank, UCODEInstructionOpcode
 
 class UCODESimStatus:
     init = 0
@@ -26,7 +26,17 @@ def __init__(self):
 
 def cycle(self):
     """A single cycle"""
-    pass
+    
+    #if paused, nothing to do
+    if self.status = UCODESimStatus.paused:
+        return
+
+    #fetch stage
+    #self.next_instr =
+    
+    #decode
+    if self.next_instr.opcode == UCODEInstructionOpcode.OPCODE_R:
+        #arithmetic operations
 
 def pause(self):
     """Pause execution (simulation)"""
