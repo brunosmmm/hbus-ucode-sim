@@ -49,17 +49,21 @@ class UCODESim:
             result = UCODE_ARITHMETIC_FUNCTIONS[self.next_instr.func].calculate(reg_a_val,reg_b_val)
 
             #write
-            self.reg_bank.write_reg(self.next_instr.reg_a,result)
+            if self.next_instr.func == FUNC_MUL:
+                self.reg_hi = result >> 8
+                self.reg_lo = result & 0xFF
+            else:
+                self.reg_bank.write_reg(self.next_instr.reg_a, result)
 
         elif self.next_instr.opcode == OPCODE_S:
             #shift operations
             reg_a_val = self.reg_bank.read_reg(self.next_instr.reg_a)
             shamt_val = self.next_instr.shamt
 
-            result = UCODE_SHIFT_FUNCTIONS[self.next_instr.func].calculate(reg_a_val,shamt_val)
+            result = UCODE_SHIFT_FUNCTIONS[self.next_instr.func].calculate(reg_a_val, shamt_val)
 
             #write
-            self.reg_bank.write_reg(self.next_instr.reg_a,result)
+            self.reg_bank.write_reg(self.next_instr.reg_a, result)
         
         elif self.next_instr.opcode in (OPCODE_JAL, OPCODE_J):
             jump = True
