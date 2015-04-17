@@ -52,6 +52,9 @@ class UCODESim:
             if self.next_instr.func == FUNC_MUL:
                 self.reg_hi = result >> 8
                 self.reg_lo = result & 0xFF
+            elif self.next_instr.func == FUNC_DIV:
+                self.reg_hi = result[0]
+                self.reg_lo = result[1]
             else:
                 self.reg_bank.write_reg(self.next_instr.reg_a, result)
 
@@ -157,6 +160,7 @@ class UCODESim:
         #clear special registers
         self.reg_hi = 0
         self.reg_lo = 0
+        self.reg_ret = 0
 
         #set PC to 0
         self.pc = 0
