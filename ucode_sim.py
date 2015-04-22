@@ -19,7 +19,6 @@ class UCODESim:
     #special registers
     reg_hi = 0
     reg_lo = 0
-    reg_ret = 0
 
     #status
     status = UCODESimStatus.init
@@ -160,7 +159,6 @@ class UCODESim:
         #clear special registers
         self.reg_hi = 0
         self.reg_lo = 0
-        self.reg_ret = 0
 
         #set PC to 0
         self.pc = 0
